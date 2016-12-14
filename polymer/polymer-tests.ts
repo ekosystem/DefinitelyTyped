@@ -1,5 +1,3 @@
-/// <reference path="polymer.d.ts"/>
-
 Polymer({
   is: "my-element",
 
@@ -12,7 +10,11 @@ Polymer({
       reflectToAttribute: true,
       notify: true,
       computed: "__prop2()"
-    }
+    },
+    prop3: {
+        type: Object,
+        value: { "foo": "bar" },
+    },
   },
 
   hostAttributes: {
@@ -63,7 +65,7 @@ var el2 = document.createElement('my-element');
 class MyElement2 {
   is: string;
 
-  registered() {
+  beforeRegister() {
     this.is = "my-element2";
   }
 }
@@ -74,7 +76,7 @@ Polymer(MyElement2);
 class MyElement3 implements polymer.Base {
   is: string;
 
-  registered() {
+  beforeRegister() {
     this.is = "my-element3";
   }
 }

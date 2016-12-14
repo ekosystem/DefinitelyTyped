@@ -1,5 +1,4 @@
-/// <reference path="./lovefield.d.ts"/>
-
+import lf = require("lovefield");
 function main(): void {
   var schemaBuilder: lf.schema.Builder = lf.schema.create('todo', 1);
 
@@ -8,8 +7,10 @@ function main(): void {
       addColumn('description', lf.Type.STRING).
       addColumn('deadline', lf.Type.DATE_TIME).
       addColumn('done', lf.Type.BOOLEAN).
-      addPrimaryKey(['id']).
-      addIndex('idxDeadline', ['deadline'], false, lf.Order.DESC);
+      addPrimaryKey(['id'], false).
+      addIndex('idxDeadline', ['deadline'], false, lf.Order.DESC).
+      addNullable(['deadline']).
+      addUnique('uq_description', ['description']);
 
   var todoDb: lf.Database = null;
   var itemSchema: lf.schema.Table = null;
@@ -26,11 +27,10 @@ function main(): void {
           'deadline': new Date(),
           'done': false
         });
-
         return db.insertOrReplace().into(itemSchema).values([row]).exec();
       }).then(
       function() {
-        var column: lf.schema.Column = (<any>itemSchema).done;
+        var column = itemSchema['done'];
         return todoDb.select().from(itemSchema).where(column.eq(false)).exec();
       }).then(
       function(results) {

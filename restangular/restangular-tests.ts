@@ -1,5 +1,5 @@
-/// <reference path="restangular.d.ts" />
-
+import restangular = require("restangular");
+import * as angular from 'angular';
 
 var myApp = angular.module('testModule');
 
@@ -50,7 +50,7 @@ myApp.config((RestangularProvider: restangular.IProvider) => {
 });
 
 
-interface MyAppScope extends ng.IScope {
+interface MyAppScope extends angular.IScope {
 	accounts: string[];
   allAccounts: any[];
   account: any;

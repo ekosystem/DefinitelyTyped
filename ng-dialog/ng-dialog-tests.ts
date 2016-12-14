@@ -1,5 +1,5 @@
-/// <reference path="ng-dialog.d.ts" />
-/// <reference path="../angularjs/angular.d.ts" />
+/// <reference types="angular" />
+import * as angular from 'angular';
 
 var app = angular.module('testModule', ['ngDialog']);
 
@@ -20,6 +20,8 @@ class DialogTestController {
 			template: "login.html",
 			className: "default flat-ui",
 			closeByEscape: false,
+			data: "string",
+			disableAnimation: false,
 			name: "login-popup"
 		});
 
@@ -39,7 +41,7 @@ class DialogTestController {
 
 class LoginDialogController {
 
-	constructor($scope: angular.dialog.IDialogScope) {
+	constructor($scope:angular.dialog.IDialogScope) {
 
 		$scope.closeThisDialog("bye");
 	}

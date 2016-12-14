@@ -1,7 +1,8 @@
-///<reference path='../../react/react.d.ts' />
+///<reference types="react-0.13.3" />
 ///<reference path='material-ui-0.11.1.d.ts' />
 
 import * as React from "react/addons";
+
 import mui = require("material-ui");
 import Colors = require("material-ui/lib/styles/colors");
 import AppBar = require("material-ui/lib/app-bar");

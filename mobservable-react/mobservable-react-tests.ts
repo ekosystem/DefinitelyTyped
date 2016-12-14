@@ -1,7 +1,6 @@
-/// <reference path="./mobservable-react.d.ts"/>
-/// <reference path="../react/react-global.d.ts" />
-
 import {reactiveComponent} from 'mobservable-react';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 {
     let c1 = reactiveComponent(React.createClass({
@@ -17,7 +16,7 @@ import {reactiveComponent} from 'mobservable-react';
     }));
 
     let c1Factory = React.createFactory(c1);
-    React.render(c1Factory({
+    ReactDOM.render(c1Factory({
         test: "hello"
     }), null);
 }
@@ -31,7 +30,7 @@ class TestComponent extends React.Component<{ test: string },{}> {
 
 {
     let c2Factory = React.createFactory(TestComponent);
-    React.render(c2Factory({
+    ReactDOM.render(c2Factory({
         test: "hello" 
     }) , null);
 }
@@ -39,7 +38,7 @@ class TestComponent extends React.Component<{ test: string },{}> {
 {
     var c3 = reactiveComponent((props: { test: string }) => React.createElement("div"));
     var c3Factory = React.createFactory(c3); //without JSX
-    React.render(c3Factory({
+    ReactDOM.render(c3Factory({
         test: "hello"
     }), null);
 }
@@ -55,7 +54,7 @@ class TestComponent2 extends React.Component<{ test: string },{}> {
     // Argument of type 'typeof TestComponent2 | void' is not assignable to parameter of type 'ComponentClass<{ test: string; }>'.
     // Type 'void' is not assignable to type 'ComponentClass<{ test: string; }>'.
     let c4Factory = React.createFactory(<React.ClassicComponentClass<{test:string}>><any> reactiveComponent(TestComponent2));
-    React.render(c4Factory({
+    ReactDOM.render(c4Factory({
         test: "hello" 
     }) , null);
 }

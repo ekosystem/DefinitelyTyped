@@ -1,5 +1,3 @@
-///<reference path='fontoxml.d.ts' />
-
 var workflow:com.fontoxml.IWorkflowInfo = {
 	id:"1",
 	displayName:"workflow"
@@ -25,4 +23,11 @@ var simpleinit:com.fontoxml.IInvocator = {
 	documentIds: ["11-22-33","44-55-66"],
 	cmsBaseUrl: "/test/",
 	editSessionToken: "aa-bb-cc-dd-ee"
+}
+
+var eventData:com.fontoxml.IFontoMessageEventData = {
+	command: "test-command",
+	type: "test-type",
+	scope: init,
+	metadata: {}
 }

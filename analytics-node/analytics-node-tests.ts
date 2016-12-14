@@ -1,7 +1,5 @@
-/// <reference path="./analytics-node.d.ts" />
-
-var analytics: AnalyticsNode.Analytics;
 import Analytics = require("analytics-node");
+var analytics: Analytics;
 
 function testConfig(): void {
   analytics = new Analytics('YOUR_WRITE_KEY', {
@@ -80,3 +78,12 @@ function testIntegrations(): void {
     }
   });
 }
+
+function testFlush(): void {
+  analytics.flush();
+  analytics.flush(function(err, batch) {
+    if (err) { alert("Oh nos!"); }
+    else { console.log(batch.batch[0].type); }
+  });
+}
+

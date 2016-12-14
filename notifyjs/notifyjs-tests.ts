@@ -1,4 +1,4 @@
-/// <reference path="notifyjs.d.ts" />
+
 
 function test_Notify_constructor() {
     //Min
@@ -31,6 +31,6 @@ function test_Notify_static_methods() {
     Notify.requestPermission();
     Notify.requestPermission(()=> console.log("onPermissionGrantedCallback"));
     Notify.requestPermission(()=> console.log("onPermissionGrantedCallback"), ()=> console.log("onPermissionDeniedCallback"));
-    Notify.isSupported;
+    Notify.isSupported();
     Notify.permissionLevel;
 }

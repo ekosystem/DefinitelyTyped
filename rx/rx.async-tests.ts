@@ -1,9 +1,9 @@
 // Tests for RxJS-Async TypeScript definitions
 // Tests by Igor Oleinikov <https://github.com/Igorbek>
 
-/// <reference path="rx.async.d.ts" />
 
-module Rx.Tests.Async {
+
+namespace Rx.Tests.Async {
 
 	var obsNum: Rx.Observable<number>;
 	var obsStr: Rx.Observable<string>;

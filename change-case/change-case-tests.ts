@@ -1,5 +1,3 @@
-/// <reference path="change-case.d.ts"/>
-
 import changeCase = require("change-case");
 
 var s: string;
@@ -35,3 +33,5 @@ b = changeCase.isLower(s);
 b = changeCase.isLowerCase(s);
 s = changeCase.ucFirst(s);
 s = changeCase.upperCaseFirst(s);
+s = changeCase.lcFirst(s);
+s = changeCase.lowerCaseFirst(s);

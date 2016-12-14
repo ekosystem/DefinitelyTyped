@@ -1,11 +1,8 @@
 /** Tests taken from https://github.com/pgilad/gulp-sort#usage */
-/// <reference path="../node/node" />
-/// <reference path="../gulp/gulp" />
-/// <reference path="gulp-sort" />
 
-import gulp = require('gulp');
-import sort = require('gulp-sort');
-import gulpUtil = require('gulp-util');
+import * as gulp from 'gulp';
+import * as sort from 'gulp-sort';
+import * as gulpUtil from 'gulp-util';
 
 // default sort
 gulp.src('./src/js/**/*.js')
@@ -38,7 +35,7 @@ gulp.src('./src/js/**/*.js')
         }
     }))
     .pipe(gulp.dest('./build/js'));
-	
+
 function customComparator(file1: gulpUtil.File, file2: gulpUtil.File) {
     if (file1.path.indexOf('build') > -1) {
         return 1;

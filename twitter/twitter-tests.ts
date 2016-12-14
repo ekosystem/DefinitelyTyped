@@ -1,4 +1,4 @@
-﻿/// <reference path="twitter.d.ts" />
+﻿
 
 function load() {
     twttr.widgets.load();
@@ -80,7 +80,7 @@ function bindLoadedEvent() {
     );
 }
 
-function bindRenderedEvent() { 
+function bindRenderedEvent() {
     twttr.events.bind(
         "rendered",
         event => {

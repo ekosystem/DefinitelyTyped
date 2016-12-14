@@ -1,4 +1,3 @@
-/// <reference path="./del.d.ts"/>
 import del = require("del");
 
 var paths = ["build", "dist/**/*.js"];
@@ -35,3 +34,5 @@ paths = del.sync(["tmp/*.js", "!tmp/unicorn.js"], {force: true});
 paths = del.sync("tmp/*.js");
 
 paths = del.sync("tmp/*.js", {force: true});
+
+paths = del.sync("tmp/*.js", {dryRun: true});

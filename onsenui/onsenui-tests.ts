@@ -1,4 +1,4 @@
-/// <reference path="onsenui.d.ts" />
+
 
 function onsStatic(): void {
 	ons.ready(function(): void {
@@ -191,7 +191,7 @@ function onsTabbar(tabBar: TabbarView): void {
 		keepPage: true
 	};
 	tabBar.setActiveTab(2, options);
-	var activeTab: number = tabBar.getActiveTab();
+	var activeTab: number = tabBar.getActiveTabIndex();
 	tabBar.loadPage('myPage.html');
 	tabBar.on('eventName', null);
 	tabBar.once('eventName', null);

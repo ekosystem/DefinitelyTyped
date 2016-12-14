@@ -1,6 +1,4 @@
-﻿/// <reference path="mysql.d.ts" />
-
-import fs = require('fs');
+﻿import fs = require('fs');
 import mysql = require('mysql');
 import stream = require('stream');
 
@@ -222,6 +220,13 @@ var pool = poolCluster.of('SLAVE*', 'RANDOM');
 pool.getConnection(function (err, connection) { });
 pool.getConnection(function (err, connection) { });
 
+var poolClusterWithOptions = mysql.createPoolCluster({
+    canRetry: true,
+    removeNodeErrorCount: 3,
+    restoreNodeTimeout: 1000,
+    defaultSelector: 'RR'
+});
+
 // destroy
 poolCluster.end();
 
@@ -388,3 +393,7 @@ connection.query({
 connection = mysql.createConnection("mysql://localhost/test?flags=-FOUND_ROWS");
 connection = mysql.createConnection({ debug: true });
 connection = mysql.createConnection({ debug: ['ComQueryPacket', 'RowDataPacket'] });
+
+var type: mysql.FieldType = mysql.FieldType.SHORT;
+var info: mysql.IFieldInfo;
+info.type = type;

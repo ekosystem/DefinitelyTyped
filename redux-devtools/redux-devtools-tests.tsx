@@ -1,62 +1,33 @@
-/// <reference path="redux-devtools.d.ts" />
-/// <reference path="../redux/redux.d.ts" />
-/// <reference path="../react/react.d.ts" />
+/// <reference types="react" />
+/// <reference types="redux" />
 
-import { compose, createStore, applyMiddleware, Middleware, Reducer } from 'redux';
-import { devTools, persistState } from 'redux-devtools';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
-import * as React from 'react';
-import { Component } from 'react';
+import * as React from 'react'
+import { compose, createStore, Reducer, Store, StoreEnhancerStoreCreator } from 'redux'
+import { Provider } from 'react-redux'
+import { createDevTools, persistState } from 'redux-devtools'
 
-declare var m1: Middleware;
-declare var m2: Middleware;
-declare var m3: Middleware;
-declare var reducer: Reducer;
-class CounterApp extends Component<any, any> { };
-class Provider extends Component<{ store: any }, any> { };
+declare var reducer: Reducer<any>
 
-const finalCreateStore = compose(
-    // Enables your middleware:
-    applyMiddleware(m1, m2, m3), // any Redux middleware, e.g. redux-thunk
-    // Provides support for DevTools:
-    devTools(),
-    // Lets you write ?debug_session=<name> in address bar to persist debug sessions
-    persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-)(createStore);
-const store = finalCreateStore(reducer);
-
-class Root extends Component<any, any> {
-    render() {
-        return (
-            <div>
-                <Provider store={store}>
-                    {() => <CounterApp />}
-                </Provider>
-                <DebugPanel top right bottom>
-                    <DevTools store={store} monitor={LogMonitor} />
-                </DebugPanel>
-            </div>
-        );
-    }
+class DevToolsMonitor extends React.Component<any, any> {
 }
 
-//
-// https://github.com/gaearon/redux-devtools/blob/master/examples/counter/containers/App.js
-//
+const DevTools = createDevTools(
+  <DevToolsMonitor />
+)
 
-class App extends Component<any, any> {
-    render() {
-        return (
-            <div>
-                <Provider store={store}>
-                    {() => <CounterApp />}
-                </Provider>
-                <DebugPanel top right bottom>
-                    <DevTools store={store}
-                        monitor={LogMonitor}
-                        visibleOnLoad={true} />
-                </DebugPanel>
-            </div>
-        );
-    }
+const finalCreateStore = compose(
+  DevTools.instrument(),
+  persistState('test-session')
+)(createStore)
+
+const store: Store<any> = finalCreateStore(reducer)
+
+class App extends React.Component<any, any> {
+  render() {
+    return (
+      <Provider store={store}>
+        <DevTools />
+      </Provider>
+    )
+  }
 }

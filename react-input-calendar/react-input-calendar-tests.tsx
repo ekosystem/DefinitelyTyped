@@ -1,6 +1,7 @@
-/// <reference path="./react-input-calendar.d.ts"/>
-/// <reference path="../react/react.d.ts"/>
+/// <reference types="react"/>
+/// <reference types="react-dom"/>
 
 import * as ReactInputCalendar from 'react-input-calendar';
 import * as React from 'react';
-React.render(<ReactInputCalendar />, document.body);
+import * as ReactDOM from 'react-dom';
+ReactDOM.render(<ReactInputCalendar />, document.body);
